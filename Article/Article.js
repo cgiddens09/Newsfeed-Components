@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'My First One!',
+    date: 'Feb 19th, 2020',
+    firstParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget est libero. Donec convallis elit magna, non bibendum nisl varius eget. Nunc efficitur fringilla dolor. Vestibulum dignissim vel erat ac sagittis. Suspendisse hendrerit et diam eu lacinia. Curabitur sodales tellusgravida nisi eleifend rhoncus. Phasellus interdum iaculis sem venenatis hendrerit. Fusce dictum, turpis vitae sagittis commodo, est lorem sagittis ipsum, sed feugiat tellus dui aliquam justo. Morbi sodales id mauris id ornare. Duis semper molestie ligula. Phasellus gravida sem a mauris viverra cursus.In in ornare quam. Maecenas vel ipsum eu diam ultricies facilisis. Aenean placerat quam sed dolor scelerisque, sit amet commodo dui mollis. Aenean at velit sed mauris volutpat rutrum sit amet at velit. Duis scelerisque nisi a consequat aliquam.',
+    secondParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget est libero. Donec convallis elit magna, non bibendum nisl varius eget. Nunc efficitur fringilla dolor. Vestibulum dignissim vel erat ac sagittis. Suspendisse hendrerit et diam eu lacinia. Curabitur sodales tellus gravida nisi eleifend rhoncus. Phasellus interdum iaculis sem venenatis hendrerit. Fusce dictum, turpis vitae sagittis commodo, est lorem sagittis ipsum, sed feugiat tellus dui aliquam justo. Morbi sodales id mauris id ornare. Duis semper molestie ligula. Phasellus gravida sem a mauris viverra cursus. In in ornare quam. Maecenas vel ipsum eu diam ultricies facilisis. Aenean placerat quam sed dolor scelerisque, sit amet commodo dui mollis. Aenean at velit sed mauris volutpat rutrum sit amet at velit. Duis scelerisque nisi a consequat aliquam.',
+    thirdParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget est libero. Donec convallis elit magna, non bibendum nisl varius eget. Nunc efficitur fringilla dolor. Vestibulum dignissim vel erat ac sagittis. Suspendisse hendrerit et diam eu lacinia. Curabitur sodales tellus gravida nisi eleifend rhoncus. Phasellus interdum iaculis sem venenatis hendrerit. Fusce dictum, turpis vitae sagittis commodo, est lorem sagittis ipsum, sed feugiat tellus dui aliquam justo. Morbi sodales id mauris id ornare. Duis semper molestie ligula. Phasellus gravida sem a mauris viverra cursus. In in ornare quam. Maecenas vel ipsum eu diam ultricies facilisis. Aenean placerat quam sed dolor scelerisque, sit amet commodo dui mollis. Aenean at velit sed mauris volutpat rutrum sit amet at velit. Duis scelerisque nisi a consequat aliquam.'
   }
 ];
 
@@ -102,6 +109,7 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
@@ -112,3 +120,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function creation(item){
+
+const article = document.createElement('div');
+article.classList.add('article');
+
+const title = document.createElement('h2');
+title.textContent = `${item.title}`;
+const date = document.createElement('p');
+date.classList.add('date');
+date.textContent = `${item.date}`;
+
+const para1 = document.createElement('p');
+para1.textContent = `${item.firstParagraph}`;
+const para2 = document.createElement('p');
+para2.textContent = `${item.secondParagraph}`;
+const para3 = document.createElement('p');
+para3.textContent = `${item.thirdParagraph}`;
+
+const button = document.createElement('span');
+button.classList.add('expandButton');
+button.textContent = '+';
+button.addEventListener('click', (event) => {
+  article.classList.toggle('article-open');
+})
+
+article.appendChild(title);
+article.appendChild(date);
+article.appendChild(para1);
+article.appendChild(para2);
+article.appendChild(para3);
+article.appendChild(button);
+
+return article;
+}
+
+const articles = document.querySelector('.articles');
+data.forEach((item) => {
+const newArticle = creation(item)
+articles.appendChild(newArticle)
+ 
+})
+
+
